@@ -5,3 +5,4 @@
 /Example/TinyConstraints.xcodeproj/project.xcworkspace/xcuserdata
 /Example/Build
 .swiftpm
+.DS_Store
