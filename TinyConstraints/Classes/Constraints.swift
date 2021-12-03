@@ -40,17 +40,25 @@ public enum ConstraintRelation: Int {
 public extension Collection where Iterator.Element == Constraint {
     
     func activate() {
-        
         if let constraints = self as? Constraints {
             Constraint.activate(constraints)
         }
     }
     
-    func deActivate() {
-        
+    func deactivate() {
         if let constraints = self as? Constraints {
             Constraint.deactivate(constraints)
         }
+    }
+}
+
+public extension Constraint {
+    func activate() {
+        [self].activate()
+    }
+    
+    func deactivate() {
+        [self].deactivate()
     }
 }
 
