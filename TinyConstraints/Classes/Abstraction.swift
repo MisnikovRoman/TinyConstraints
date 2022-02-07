@@ -23,26 +23,60 @@
 
 import Foundation
 
+public protocol TinyEdgeInsets {
+    var top: CGFloat { get }
+    var left: CGFloat { get }
+    var bottom: CGFloat { get }
+    var right: CGFloat { get }
+    var leading: CGFloat { get }
+    var trailing: CGFloat { get }
+    
+    init(top: CGFloat, leading: CGFloat, bottom: CGFloat, trailing: CGFloat)
+}
+
 #if os(OSX)
-    import AppKit
+import AppKit
+
+public typealias TinyView = NSView
+public typealias LayoutGuide = NSLayoutGuide
+public typealias ConstraintAxis = NSLayoutConstraint.Orientation
+public typealias LayoutPriority = NSLayoutConstraint.Priority
+
+extension NSEdgeInsets: TinyEdgeInsets {
+    public var leading: CGFloat { left }
+    public var trailing: CGFloat { right }
     
-    public typealias TinyView = NSView
-    public typealias LayoutGuide = NSLayoutGuide
-    public typealias ConstraintAxis = NSLayoutConstraint.Orientation
-    public typealias LayoutPriority = NSLayoutConstraint.Priority
-    public typealias TinyEdgeInsets = NSEdgeInsets
-    
-    public extension NSEdgeInsets {
-        static var zero = NSEdgeInsetsZero
+    public init(top: CGFloat, leading: CGFloat, bottom: CGFloat, trailing: CGFloat) {
+        self.init(top: top, left: leading, bottom: bottom, right: trailing)
     }
+}
+
+extension TinyEdgeInsets where Self == NSEdgeInsets {
+    public static var zero: TinyEdgeInsets { NSEdgeInsetsZero }
+}
+
 #else
-    import UIKit
+import UIKit
+
+public typealias TinyView = UIView
+public typealias LayoutGuide = UILayoutGuide
+public typealias ConstraintAxis = NSLayoutConstraint.Axis
+public typealias LayoutPriority = UILayoutPriority
+
+extension UIEdgeInsets: TinyEdgeInsets {
+    public var leading: CGFloat { left }
+    public var trailing: CGFloat { right }
     
-    public typealias TinyView = UIView
-    public typealias LayoutGuide = UILayoutGuide
-    public typealias ConstraintAxis = NSLayoutConstraint.Axis
-    public typealias LayoutPriority = UILayoutPriority
-    
-    public typealias TinyEdgeInsets = UIEdgeInsets
+    public init(top: CGFloat, leading: CGFloat, bottom: CGFloat, trailing: CGFloat) {
+        self.init(top: top, left: leading, bottom: bottom, right: trailing)
+    }
+}
+
+extension TinyEdgeInsets where Self == TinyEdgeInsets {
+    public static var zero: TinyEdgeInsets { UIEdgeInsets.zero }
+}
+
+extension NSDirectionalEdgeInsets: TinyEdgeInsets {}
+
 #endif
 

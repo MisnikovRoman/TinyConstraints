@@ -35,12 +35,12 @@
                 constraints.append(topToSuperview(offset: insets.top, usingSafeArea: usingSafeArea))
             }
             
-            if !excludedEdge.contains(.left) {
-                constraints.append(leftToSuperview(offset: insets.left, usingSafeArea: usingSafeArea))
+            if !excludedEdge.contains(.leading) {
+                constraints.append(leadingToSuperview(offset: insets.leading, usingSafeArea: usingSafeArea))
             }
             
-            if !excludedEdge.contains(.right) {
-                constraints.append(rightToSuperview(offset: -insets.right, usingSafeArea: usingSafeArea))
+            if !excludedEdge.contains(.trailing) {
+                constraints.append(trailingToSuperview(offset: -insets.trailing, usingSafeArea: usingSafeArea))
             }
             
             if !excludedEdge.contains(.bottom) {

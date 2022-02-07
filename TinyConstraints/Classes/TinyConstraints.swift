@@ -52,16 +52,16 @@ public extension Constrainable {
             constraints.append(top(to: view, offset: insets.top, relation: relation, priority: priority, isActive: isActive))
         }
         
-        if !excludedEdge.contains(.left) {
-            constraints.append(left(to: view, offset: insets.left, relation: relation, priority: priority, isActive: isActive))
+        if !excludedEdge.contains(.leading) {
+            constraints.append(leading(to: view, offset: insets.leading, relation: relation, priority: priority, isActive: isActive))
         }
         
         if !excludedEdge.contains(.bottom) {
             constraints.append(bottom(to: view, offset: -insets.bottom, relation: relation, priority: priority, isActive: isActive))
         }
         
-        if !excludedEdge.contains(.right) {
-            constraints.append(right(to: view, offset: -insets.right, relation: relation, priority: priority, isActive: isActive))
+        if !excludedEdge.contains(.trailing) {
+            constraints.append(trailing(to: view, offset: -insets.trailing, relation: relation, priority: priority, isActive: isActive))
         }
         
         return constraints
@@ -96,7 +96,7 @@ public extension Constrainable {
         prepareForLayout()
         
         let constraints = [
-            left(to: view, offset: insets.left, relation: relation, priority: priority, isActive: isActive),
+            leading(to: view, offset: insets.leading, relation: relation, priority: priority, isActive: isActive),
             top(to: view, offset: insets.top, relation: relation, priority: priority, isActive: isActive)
         ]
         
